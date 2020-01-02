@@ -9,5 +9,5 @@ run_test:
 	vvp rca_2.o
 
 clean:
-	rm *.o
-	rm *.vvp
+	rm -f *.o
+	rm -f *.vvp
