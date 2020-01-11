@@ -1,4 +1,5 @@
 `include "rca.sv"
+`include "test_functions.sv"
 
 module rca_tb();
 
@@ -19,27 +20,47 @@ begin
 	
 	a = 2'b00;
 	b = 2'b00;
-	
+
+	#1 `ASSERT(result, 4'b000);
+
 	#1 a = 2'b01;
+
+	#1 `ASSERT(result, 4'b001);
 
 	#1 a = 2'b00;
 	b = 2'b01;
 
+	#1 `ASSERT(result, 4'b001);
+
 	#1 a = 2'b10;
 	b = 2'b00;
 
+	#1 `ASSERT(result, 4'b010);
+
 	#1 b = 2'b01;
 
+	#1 `ASSERT(result, 4'b011);
+
 	#1 b = 2'b10;
+
+	#1 `ASSERT(result, 4'b100);
 
 	#1 b = 2'b0;
 	a = 2'b11;
 
+	#1 `ASSERT(result, 4'b011);
+
 	#1 b = 2'b01;
-	
+
+	#1 `ASSERT(result, 4'b100);
+
 	#1 b = 2'b10;
 
+	#1 `ASSERT(result, 4'b101);
+
 	#1 b = 2'b11;
+
+	#1 `ASSERT(result, 4'b110);
 
 	#1 $finish;
 end
