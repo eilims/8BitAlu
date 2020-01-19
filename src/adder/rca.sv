@@ -1,7 +1,5 @@
 `include "bit_adder.sv"
 
-`default_nettype none
-
 module RCA 
 #(
 	parameter integer SIZE = 1

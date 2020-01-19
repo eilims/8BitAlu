@@ -1,4 +1,4 @@
-`include "rca.sv"
+`include "adder.sv"
 
 
 module twos_complementor
@@ -14,11 +14,11 @@ wire[SIZE:0] result;
 assign b = result[SIZE-1:0];
 
 
-RCA
+adder
 #(
 	SIZE
 )
-adder
+adder_stage
 (
 	~a,
 	{{SIZE-1{1'b0}}, 1'b1},

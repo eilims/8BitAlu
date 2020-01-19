@@ -1,4 +1,4 @@
-`include "rca.sv"
+`include "adder.sv"
 
 
 module multiplier
@@ -71,11 +71,11 @@ end
 // the result is represented within the last result index.
 for(i = SIZE; i < results_size; i = i + 1)
 begin
-	RCA
+	adder
 	#(
 		FULL_SIZE
 	)
-	adder
+	adder_stage
 	(
 		results[((i-SIZE)*2)][FULL_SIZE-1:0],
 		results[((i-SIZE)*2)+1][FULL_SIZE-1:0],
