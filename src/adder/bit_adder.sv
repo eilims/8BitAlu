@@ -1,5 +1,3 @@
-`default_nettype none
-
 module bit_adder 
 (
 	input wire a,
