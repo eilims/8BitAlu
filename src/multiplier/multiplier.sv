@@ -30,15 +30,15 @@ begin
 			inputs = inputs + 1;
 		end
 		// Calculate number of adders needed
-		size = size / 2;
+		inputs = inputs / 2;
 		curr_count = curr_count + inputs;
 	end
-	calc_result_size = curr_count;
+	calc_num_adders = curr_count;
 end
 endfunction
 
 localparam integer FULL_SIZE = (SIZE*2)-1;
-localparam integer number_of_adders = calc_result_size(SIZE);
+localparam integer number_of_adders = calc_num_adders(SIZE);
 
 // The results array will hold all the shifted initial data and
 // the addition results. The number of elements is calculated by having 
