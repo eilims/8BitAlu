@@ -1,7 +1,6 @@
 `include "adder.sv"
 
-
-module multiplier
+module tree_multiplier
 #(
 	parameter integer SIZE = 2
 )
