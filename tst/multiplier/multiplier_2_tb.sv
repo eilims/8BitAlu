@@ -8,13 +8,14 @@ localparam integer SIZE = 2;
 reg[SIZE-1:0] a;
 reg[SIZE-1:0] b;
 wire[(SIZE*2)-1:0] c;
+wire over;
 
 initial
 begin
 	$dumpfile("multiplier_2.vvp");
 	$dumpvars(0, multiplier_tb);
-	$display("Time\t a\t b\t c\t");
-	$monitor("%g\t %b\t %b\t %b\t",$time,a,b,c);
+	$display("Time\t a\t b\t over\t c\t");
+	$monitor("%g\t %b\t %b\t %b\t %b\t",$time,a,b,over,c);
 
 	a = 2'b00;
 	b = 2'b00;
@@ -50,6 +51,7 @@ uut
 (
 	a,
 	b,
+	over,
 	c
 );
 

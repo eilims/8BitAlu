@@ -7,6 +7,7 @@ module multiplier
 (
 	input wire[SIZE-1:0] a,
 	input wire[SIZE-1:0] b,
+	output wire overflow,
 	output wire[(SIZE*2)-1:0] c
 );
 
@@ -18,6 +19,7 @@ multiplier_block
 (
 	a,
 	b,
+	overflow,
 	c
 );
 

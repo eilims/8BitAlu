@@ -8,13 +8,14 @@ localparam integer SIZE = 4;
 reg[SIZE-1:0] a;
 reg[SIZE-1:0] b;
 wire[(SIZE*2)-1:0] c;
+wire over;
 
 initial
 begin
 	$dumpfile("tree_multiplier_4.vvp");
 	$dumpvars(0, multiplier_tb);
-	$display("Time\t a\t b\t c\t");
-	$monitor("%g\t %b\t %b\t %b\t",$time,a,b,c);
+	$display("Time\t a\t b\t over\t c\t");
+	$monitor("%g\t %b\t %b\t %b\t %b\t",$time,a,b,over,c);
 
 	a = 4'b0000;
 	b = 4'b0000;
@@ -59,6 +60,7 @@ uut
 (
 	a,
 	b,
+	over,
 	c
 );
 

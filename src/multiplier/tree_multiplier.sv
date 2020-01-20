@@ -7,6 +7,7 @@ module tree_multiplier
 (
 	input wire[SIZE-1:0] a,
 	input wire[SIZE-1:0] b,
+	output wire overflow,
 	output wire[(SIZE*2)-1:0] c
 );
 
@@ -45,6 +46,7 @@ localparam integer number_of_adders = calc_num_adders(SIZE);
 // for every adder (See Adder Calc function). For implementation see the Addition logic creation
 localparam integer results_size = SIZE + number_of_adders;
 wire[FULL_SIZE:0] results[results_size-1:0];
+wire[number_of_adders-1:0] overflow_res;
 
 generate
 genvar i;
@@ -78,12 +80,14 @@ begin
 	(
 		results[((i-SIZE)*2)][FULL_SIZE-1:0],
 		results[((i-SIZE)*2)+1][FULL_SIZE-1:0],
+		overflow_res[i-SIZE],
 		results[i]
 	);
 end
 endgenerate
 
 assign c = results[results_size-1];
+assign overflow = |results[results_size-1][FULL_SIZE:SIZE];
 
 endmodule
 

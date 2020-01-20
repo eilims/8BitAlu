@@ -11,6 +11,7 @@ module twos_complementor
 );
 
 wire[SIZE:0] result;
+wire dummy;
 assign b = result[SIZE-1:0];
 
 
@@ -22,6 +23,7 @@ adder_stage
 (
 	~a,
 	{{SIZE-1{1'b0}}, 1'b1},
+	dummy,
 	result
 );
 
