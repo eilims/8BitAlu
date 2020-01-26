@@ -1,4 +1,4 @@
-SUB_DIRS = adder/ shifter/ twos_comp/ multiplier/
+SUB_DIRS = adder/ shifter/ twos_comp/ multiplier/ comparator/
 
 all: $(SUB_DIRS)
 
