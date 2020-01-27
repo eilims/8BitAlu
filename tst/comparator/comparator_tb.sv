@@ -47,7 +47,7 @@ begin
 	`ASSERT(is_a_greater, 1'b0);
 	`ASSERT(equal, 1'b1);
 
-
+	#1 $finish;
 end
 
 comparator
