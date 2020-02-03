@@ -1,3 +1,6 @@
+`ifndef ADDER_SV
+`define ADDER_SV
+
 `include "rca.sv"
 
 module adder
@@ -24,3 +27,4 @@ adder_block
 );
 
 endmodule
+`endif
