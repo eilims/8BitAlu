@@ -1,3 +1,5 @@
+`ifndef BIT_COMPARE_SV
+`define BIT_COMPARE_SV
 
 module bit_compare
 (
@@ -13,3 +15,5 @@ assign a_g = (((a^b) && (a)) || (a_skip)) && (~b_skip);
 assign b_g = (((a^b) && (b)) || (b_skip)) && (~a_skip);
 
 endmodule
+`endif
+

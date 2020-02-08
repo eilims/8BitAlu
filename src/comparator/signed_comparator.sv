@@ -1,3 +1,6 @@
+`ifndef SIGNED_COMPARATOR_SV
+`define SIGNED_COMPARATOR_SV
+
 `include "comparator.sv"
 
 module signed_comparator
@@ -55,3 +58,5 @@ assign is_a_greater = signed_equal ? num_a_g : (~signed_a_g);
 assign equal = signed_equal ? num_equal : 1'b0;
 
 endmodule
+`endif
+

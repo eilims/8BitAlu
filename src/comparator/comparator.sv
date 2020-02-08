@@ -1,3 +1,6 @@
+`ifndef COMPARATOR_SV
+`define COMPARATOR_SV
+
 `include "bit_compare.sv"
 
 module comparator
@@ -49,3 +52,5 @@ assign is_a_greater = |a_result;
 assign equal = ~((|a_result) || (|b_result));
 
 endmodule
+`endif
+
