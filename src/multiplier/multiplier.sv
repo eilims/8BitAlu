@@ -1,3 +1,6 @@
+`ifndef MULTIPLIER_SV
+`define MULTIPLIER_SV
+
 `include "tree_multiplier.sv"
 
 module multiplier
@@ -24,3 +27,5 @@ multiplier_block
 );
 
 endmodule
+`endif
+

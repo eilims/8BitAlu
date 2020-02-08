@@ -1,3 +1,6 @@
+`ifndef TREE_MULTIPLIER_SV
+`define TREE_MULTIPLIER_SV
+
 `include "adder.sv"
 
 module tree_multiplier
@@ -90,4 +93,5 @@ assign c = results[results_size-1];
 assign overflow = |results[results_size-1][FULL_SIZE:SIZE];
 
 endmodule
+`endif
 
