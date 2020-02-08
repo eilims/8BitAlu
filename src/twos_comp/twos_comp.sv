@@ -1,5 +1,7 @@
-`include "adder.sv"
+`ifndef TWOS_COMP_SV
+`define TWOS_COMP_SV
 
+`include "adder.sv"
 
 module twos_complementor
 #(
@@ -28,4 +30,5 @@ adder_stage
 );
 
 endmodule
+`endif
 
