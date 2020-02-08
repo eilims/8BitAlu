@@ -19,9 +19,32 @@ module alu
 );
 
 
+wire[SIZE-1:0] over_results[11:0];
 wire[SIZE-1:0] comb_results[11:0];
 
-assign overflow = 0;
-assign result = 0;
+// AND
+assign over_results[0] = 0;
+assign comb_results[0] = a & b;
+
+// OR
+assign over_results[1] = 0;
+assign comb_results[1] = a | b;
+
+// XOR
+assign over_results[2] = 0;
+assign comb_results[2] = a ^ b;
+
+// NOT
+assign over_results[3] = 0;
+assign comb_results[3] = ~a;
+
+// Signed Addition
+
+// Unsigned Addition
+
+
+// Final assignment
+assign overflow = enable ? over_results[command] : 0;
+assign result = enable ? comb_results[command] : 0;
 
 endmodule
