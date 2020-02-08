@@ -1,3 +1,6 @@
+`ifndef SUBTRACTOR_SV
+`define SUBTRACTOR_SV
+
 `include "adder.sv"
 `include "twos_comp.sv"
 `include "comparator.sv"
@@ -65,3 +68,5 @@ assign internal_overflow = (a[SIZE-1]) ? adder_overflow : result[SIZE-1];
 assign overflow = (sign_result_eq) ? 1'b0 : internal_overflow;
 
 endmodule
+`endif
+
