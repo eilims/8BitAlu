@@ -5,7 +5,7 @@
 
 module signed_comparator
 #(
-	parameter integer SIZE = 1
+	parameter integer SIZE = 2
 )
 (
 	input wire[SIZE-1:0] a,
