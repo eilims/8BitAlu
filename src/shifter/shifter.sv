@@ -1,4 +1,5 @@
-`default_nettype none
+`ifndef SHIFTER_SV
+`define SHIFTER_SV
 
 module shifter
 #(
@@ -28,3 +29,5 @@ begin
 end
 
 endmodule
+`endif
+
