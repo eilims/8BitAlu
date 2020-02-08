@@ -1,3 +1,6 @@
+`ifndef RCA_SV
+`define RCA_SV
+
 `include "bit_adder.sv"
 
 module RCA 
@@ -68,3 +71,5 @@ endgenerate
 assign overflow = result[SIZE];
 
 endmodule
+`endif
+
