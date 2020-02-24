@@ -186,6 +186,97 @@ begin
 	#1
 	`ASSERT(overflow, 1'b0);
 	`ASSERT(result, 4'h8);
+
+	$display("Unsigned Adder Test");
+	enable = 1'b1;
+	command = 4'h4;
+	a = 4'h0;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0);
+
+	enable = 1'b1;
+	command = 4'h4;
+	a = 4'h1;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1);
+
+	enable = 1'b1;
+	command = 4'h4;
+	a = 4'h7;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h8);
+
+	enable = 1'b1;
+	command = 4'h4;
+	a = 4'hF;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hF);
+
+	enable = 1'b1;
+	command = 4'h4;
+	a = 4'hF;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 5'h10);
+
+	$display("Signed Adder Test");
+	enable = 1'b1;
+	command = 4'h5;
+	a = 4'h0;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0);
+
+	enable = 1'b1;
+	command = 4'h5;
+	a = 4'h1;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1);
+
+	enable = 1'b1;
+	command = 4'h5;
+	a = 4'h7;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 4'h8);
+
+	enable = 1'b1;
+	command = 4'h5;
+	a = 4'hF;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hF);
+
+	enable = 1'b1;
+	command = 4'h5;
+	a = 4'hF;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 5'h10);
+
+	enable = 1'b1;
+	command = 4'h5;
+	a = 4'h8;
+	b = 4'hF;
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 5'h17);
+
 end
 
 alu
