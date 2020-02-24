@@ -105,7 +105,7 @@ result_complementor
 	result_add_inv
 );
 
-assign inter_overflow = (both_pos == 1'b1) ? result_add[SIZE-1] : overflow_add;
+assign inter_overflow = (both_pos == 1'b1) ? result_add[SIZE-1] : 0;
 assign overflow = (use_inv == 1'b1) ? result_add_inv[SIZE] : inter_overflow;
 assign result = (use_inv == 1'b1) ? result_add_inv : result_add;
 

@@ -61,7 +61,7 @@ begin
 	#1 b = 2'b01;
 
 	#1 `ASSERT(result, 4'b100);
-	`ASSERT(overflow, 1);
+	`ASSERT(overflow, 0);
 
 	#1 b = 2'b10;
 
