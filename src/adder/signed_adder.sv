@@ -31,7 +31,10 @@ wire overflow_add;
 wire[SIZE:0] result_add;
 wire[SIZE:0] result_add_inv;
 
+wire both_pos = ((is_a_negative == 1'b0) && (is_a_b_equal == 1'b1));
 wire use_inv = ((is_a_negative == 1'b1) && (is_a_b_equal == 1'b1));
+
+wire inter_overflow;
 
 comparator
 #(
@@ -102,7 +105,8 @@ result_complementor
 	result_add_inv
 );
 
-assign overflow = (use_inv == 1'b1) ? result_add_inv[SIZE] : overflow_add;
+assign inter_overflow = (both_pos == 1'b1) ? result_add[SIZE-1] : overflow_add;
+assign overflow = (use_inv == 1'b1) ? result_add_inv[SIZE] : inter_overflow;
 assign result = (use_inv == 1'b1) ? result_add_inv : result_add;
 
 endmodule

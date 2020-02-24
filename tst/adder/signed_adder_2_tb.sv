@@ -73,6 +73,14 @@ begin
 	#1 `ASSERT(result, 4'b110);
 	`ASSERT(overflow, 1);
 
+
+	#1 
+	a = 2'b01;
+	b = 2'b01;
+
+	#1 `ASSERT(result, 4'b010);
+	`ASSERT(overflow, 1);
+
 	#1 $finish;
 end
 
