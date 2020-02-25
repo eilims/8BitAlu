@@ -226,7 +226,7 @@ begin
 	b = 4'h1;
 	#1
 	`ASSERT(overflow, 1'b1);
-	`ASSERT(result, 5'h10);
+	`ASSERT(result, 5'h00);
 
 	$display("Signed Adder Test");
 	enable = 1'b1;
@@ -267,7 +267,7 @@ begin
 	b = 4'h1;
 	#1
 	`ASSERT(overflow, 1'b0);
-	`ASSERT(result, 5'h10);
+	`ASSERT(result, 5'h0);
 
 	enable = 1'b1;
 	command = 4'h5;
@@ -275,7 +275,72 @@ begin
 	b = 4'hF;
 	#1
 	`ASSERT(overflow, 1'b1);
-	`ASSERT(result, 5'h17);
+	`ASSERT(result, 5'h07);
+
+	$display("Unsigned Subtractor Test");
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'h0;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0);
+
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'h1;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1);
+
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'h7;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h6);
+
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'hF;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hF);
+
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'hF;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hE);
+
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'h0;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 5'h0F);
+
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'h0;
+	b = 4'hF;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 5'h01);
+
+	enable = 1'b1;
+	command = 4'h6;
+	a = 4'h0; // 0
+	b = 4'h7; // 7
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 5'h09); // -7 or 9
 
 end
 

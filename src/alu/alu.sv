@@ -21,6 +21,7 @@ module alu
 
 localparam integer RESULT_SIZE = (2*SIZE);
 
+wire[1:0] dummy;
 
 wire over_results[11:0];
 wire[(2*SIZE)-1:0] comb_results[11:0];
@@ -43,6 +44,7 @@ assign comb_results[3][RESULT_SIZE-1:SIZE] = 0;
 assign comb_results[3][SIZE-1:0] = ~a;
 
 // Unsigned Addition
+assign comb_results[4][RESULT_SIZE-1:SIZE] = 0;
 adder
 #(
 	SIZE
@@ -52,10 +54,11 @@ unsigned_adder_stage
 	a,
 	b,
 	over_results[4],
-	comb_results[4]
+	{dummy[0], comb_results[4][SIZE-1:0]}
 );
 
 // Signed Addition
+assign comb_results[5][RESULT_SIZE-1:SIZE] = 0;
 signed_adder
 #(
 	SIZE
@@ -65,7 +68,21 @@ signed_adder_stage
 	a,
 	b,
 	over_results[5],
-	comb_results[5]
+	{dummy[0], comb_results[5][SIZE-1:0]}
+);
+
+// Unsigned sub
+assign comb_results[6][RESULT_SIZE-1:SIZE] = 0;
+subtractor
+#(
+	SIZE+1
+)
+unsigned_subtractor_stage
+(
+	{1'b0, a},
+	{1'b0, b},
+	over_results[6],
+	{dummy, comb_results[6][SIZE-1:0]}
 );
 
 // Final assignment
