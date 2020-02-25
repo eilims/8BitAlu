@@ -24,6 +24,8 @@ wire[SIZE-1:0] b_twos_comp;
 wire adder_overflow;
 wire dummy_val;
 
+wire is_a_g;
+wire is_a_b_eq;
 wire internal_overflow;
 
 comparator
@@ -60,12 +62,24 @@ adder_stage
 	{dummy_val, result}
 );
 
+comparator
+#(
+	SIZE
+)
+compare_inputs
+(
+	a,
+	b,
+	is_a_g,
+	is_a_b_eq
+);
+
 // If the minuend (a) is positive, we overflow if the result is negative
 // If the minuend (a) is negative, we overflow if the the adder overflows
 assign internal_overflow = (a[SIZE-1]) ? adder_overflow : result[SIZE-1];
-// If the minuend (a) and the subtrahend (b) are opposite signs the result
+// If the minuend (a) and the subtrahend (b) are the same signs the result
 // cannot overflow
-assign overflow = (sign_result_eq) ? 1'b0 : internal_overflow;
+assign overflow = ((sign_result_eq) && ~(is_a_g && is_a_b_eq)) ? 1'b0 : internal_overflow;
 
 endmodule
 `endif
