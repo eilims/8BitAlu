@@ -24,8 +24,6 @@ wire[SIZE-1:0] b_twos_comp;
 wire adder_overflow;
 wire dummy_val;
 
-wire is_a_g;
-wire is_a_b_eq;
 wire internal_overflow;
 
 comparator
@@ -60,18 +58,6 @@ adder_stage
 	{b_twos_comp[SIZE-1], b_twos_comp},
 	adder_overflow,
 	{dummy_val, result}
-);
-
-comparator
-#(
-	SIZE
-)
-compare_inputs
-(
-	a,
-	b,
-	is_a_g,
-	is_a_b_eq
 );
 
 // If the minuend (a) is positive, we overflow if the result is negative
