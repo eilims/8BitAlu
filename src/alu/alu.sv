@@ -85,6 +85,20 @@ unsigned_subtractor_stage
 	{dummy, comb_results[6][SIZE-1:0]}
 );
 
+// Signed subtraction
+assign comb_results[7][RESULT_SIZE-1:SIZE] = 0;
+subtractor
+#(
+	SIZE
+)
+signed_subtractor_stage
+(
+	a,
+	b,
+	over_results[7],
+	{dummy[0], comb_results[7][SIZE-1:0]}
+);
+
 // Final assignment
 assign overflow = enable ? over_results[command] : 0;
 assign result = enable ? comb_results[command] : 0;

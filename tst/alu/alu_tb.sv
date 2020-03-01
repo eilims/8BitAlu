@@ -342,6 +342,71 @@ begin
 	`ASSERT(overflow, 1'b0);
 	`ASSERT(result, 5'h09); // -7 or 9
 
+	$display("Signed Subtractor Test");
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'h0;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0);
+
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'h1;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1);
+
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'h7;
+	b = 4'h1;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h6);
+
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'hF;
+	b = 4'h0;
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hF);
+
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'hF; // -1
+	b = 4'h1; // 1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hE); // -2
+
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'h0; // 0
+	b = 4'h1;// 1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hF); // -1
+
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'h0; // 0 
+	b = 4'hF; // -1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1); // 1
+
+	enable = 1'b1;
+	command = 4'h7;
+	a = 4'h0; // 0
+	b = 4'h7; // 7
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h9); // -7 or 9
+
 end
 
 alu
