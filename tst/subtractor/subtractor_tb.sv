@@ -80,6 +80,28 @@ begin
 	`ASSERT(overflow, 1'b0);
 	`ASSERT(result, 5'h03);
 
+	// Mixed testing
+	#1
+	a = 4'hF; // -1
+	b = 4'h1; // 1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 5'h1E); // -2 but valid
+
+	#1
+	a = 4'hF; // -1
+	b = 4'h7; // 7
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 5'h18); // -8 but valid
+
+	#1
+	a = 4'h1; // 1
+	b = 4'hA; // -6
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 5'h07); // 7 but valid    
+
 	// Overflow testing
 	#1
 	a = 4'hB; // -5
@@ -115,6 +137,14 @@ begin
 	#1
 	`ASSERT(overflow, 1'b1);
 	`ASSERT(result, 5'h08); // "8" but invalid
+
+	#1
+	a = 4'hE; // -2
+	b = 4'h7; // 7
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 5'h17); // -2 but invalid
+
 
 	#1 $finish;
 end

@@ -62,7 +62,7 @@ adder_stage
 
 // If the minuend (a) is positive, we overflow if the result is negative
 // If the minuend (a) is negative, we overflow if the the adder overflows
-assign internal_overflow = (a[SIZE-1]) ? adder_overflow : result[SIZE-1];
+assign internal_overflow = (a[SIZE-1]) ? (result[SIZE] ^ result[SIZE-1]) : result[SIZE-1];
 // If the minuend (a) and the subtrahend (b) are the same signs the result
 // cannot overflow
 assign overflow = (sign_result_eq) ? 1'b0 : internal_overflow;
