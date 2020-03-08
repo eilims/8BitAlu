@@ -49,6 +49,12 @@ begin
 	a = 4'b1111;
 	b = 4'b1001;
 	#1 `ASSERT(c, 8'b10000111);
+
+	#1
+	a = 4'b1111;
+	b = 4'b1111;
+	#1 `ASSERT(c, 8'b01100001); // Value overflows in addition unusable
+
 	#1 $finish;
 end
 
