@@ -24,19 +24,7 @@ module tree_multiplier
 function integer calc_num_adders(input integer inputs);
 integer curr_count;
 begin
-	curr_count = 0;
-	while(inputs > 1)
-	begin
-		// If odd add additional slot for extra value
-		if(inputs % 2 != 0)
-		begin
-			inputs = inputs + 1;
-		end
-		// Calculate number of adders needed
-		inputs = inputs / 2;
-		curr_count = curr_count + inputs;
-	end
-	calc_num_adders = curr_count;
+	calc_num_adders = inputs-1;
 end
 endfunction
 
