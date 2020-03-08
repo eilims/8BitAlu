@@ -99,6 +99,19 @@ signed_subtractor_stage
 	{dummy[0], comb_results[7][SIZE-1:0]}
 );
 
+// Unsigned multiplication
+multiplier
+#(
+	SIZE
+)
+unsigned_multiplier_stage
+(
+	a,
+	b,
+	over_results[8],
+	comb_results[8]
+);
+
 // Final assignment
 assign overflow = enable ? over_results[command] : 0;
 assign result = enable ? comb_results[command] : 0;

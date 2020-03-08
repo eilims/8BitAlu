@@ -4,13 +4,14 @@
 module alu_tb();
 
 localparam integer SIZE = 4;
+localparam integer FULL_SIZE = (2*SIZE);
 
 reg enable;
 reg[3:0] command;
 reg[SIZE-1:0] a;
 reg[SIZE-1:0] b;
 wire overflow;
-wire[(2*SIZE)-1:0] result;
+wire[FULL_SIZE-1:0] result;
 
 initial
 begin
@@ -406,6 +407,79 @@ begin
 	#1
 	`ASSERT(overflow, 1'b0);
 	`ASSERT(result, 4'h9); // -7 or 9
+
+	$display("Unsigned Multiplier Test");
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'h0; // 0
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'h1; // 1
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'h0; // 0
+	b = 4'h1; // 1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0i
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'hF; // 15
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'hF; // 15
+	b = 4'h1; // 1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hF); // 15
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'h3; // 3
+	b = 4'h2; // 2
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h6); // 6
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'h7; // 7
+	b = 4'h8; // 8
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 8'h38); // 56
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'h4; // 4
+	b = 4'h4; // 4
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 8'h10); // 16
+
+	enable = 1'b1;
+	command = 4'h8;
+	a = 4'hF; // 15
+	b = 4'hF; // 15
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 8'h61); // ~225 value is not possible due to overflow
 
 end
 
