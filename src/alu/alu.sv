@@ -2,6 +2,7 @@
 `include "signed_adder.sv"
 `include "subtractor.sv"
 `include "multiplier.sv"
+`include "signed_multiplier.sv"
 `include "comparator.sv"
 `include "signed_comparator.sv"
 `include "shifter.sv"
@@ -110,6 +111,19 @@ unsigned_multiplier_stage
 	b,
 	over_results[8],
 	comb_results[8]
+);
+
+// Signed Multiplication
+signed_multiplier
+#(
+	SIZE
+)
+signed_multiplier_stage
+(
+	a,
+	b,
+	over_results[9],
+	comb_results[9]
 );
 
 // Final assignment

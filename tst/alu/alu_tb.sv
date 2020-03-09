@@ -481,6 +481,80 @@ begin
 	`ASSERT(overflow, 1'b1);
 	`ASSERT(result, 8'h61); // ~225 value is not possible due to overflow
 
+	$display("Signed Multiplier Test");
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'h0; // 0
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'hF; // -1
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'hF; // -1
+	b = 4'h2; // 2
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hE); // -2
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'h2; // 2
+	b = 4'h2; // 2
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h4); // 4
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'hF; // -1
+	b = 4'hF; // -1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1); // 1
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'hE; // -2
+	b = 4'hF; // -1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h2); // 2
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'h3; // 3
+	b = 4'h3; // 3
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 4'h9); // Invalid
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'hE; // -2
+	b = 4'hC; // -4
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 4'h8); // Invalid
+
+	enable = 1'b1;
+	command = 4'h9;
+	a = 4'hE; // -2
+	b = 4'hB; // -5
+	#1
+	`ASSERT(overflow, 1'b1);
+	`ASSERT(result, 4'hA); // 10
+
+	#1 $finish;
 end
 
 alu
