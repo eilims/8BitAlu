@@ -24,8 +24,8 @@ localparam integer RESULT_SIZE = (2*SIZE);
 
 wire[1:0] dummy;
 
-wire over_results[11:0];
-wire[(2*SIZE)-1:0] comb_results[11:0];
+wire over_results[15:0];
+wire[(2*SIZE)-1:0] comb_results[15:0];
 
 // AND
 assign over_results[0] = 0;
@@ -124,6 +124,50 @@ signed_multiplier_stage
 	b,
 	over_results[9],
 	comb_results[9]
+);
+
+assign over_results[10] = 0;
+assign comb_results[10][RESULT_SIZE-1:2] = 0;
+comparator
+#(
+	SIZE
+)
+unsigned_comparator_stage
+(
+	a,
+	b,
+	comb_results[10][0],
+	comb_results[10][1]
+);
+
+assign over_results[11] = 0;
+assign comb_results[11][RESULT_SIZE-1:2] = 0;
+signed_comparator
+#(
+	SIZE
+)
+signed_comparator_stage
+(
+	a,
+	b,
+	comb_results[11][0],
+	comb_results[11][1]
+);
+
+assign over_results[12] = 0;
+assign comb_results[12][RESULT_SIZE-1:SIZE] = 0;
+wire dummy2;
+shifter
+#(
+	SIZE
+)
+shift
+(
+	b[0],
+	b[1],
+	a,
+	comb_results[12][SIZE-1:0],
+	dummy2
 );
 
 // Final assignment

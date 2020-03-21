@@ -554,6 +554,139 @@ begin
 	`ASSERT(overflow, 1'b1);
 	`ASSERT(result, 4'hA); // 10
 
+	$display("Unsigned Comparator Test");
+	enable = 1'b1;
+	command = 4'hA;
+	a = 4'h0; // 0
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h2); // Values are equal
+	
+	enable = 1'b1;
+	command = 4'hA;
+	a = 4'hF; // 15
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1); // A is greater
+
+	enable = 1'b1;
+	command = 4'hA;
+	a = 4'h0; // 0
+	b = 4'hF; // 15
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // B is greater
+
+	$display("Signed Comparator Test");
+	enable = 1'b1;
+	command = 4'hB;
+	a = 4'h0; // 0
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h2); // Values are equal
+	
+	enable = 1'b1;
+	command = 4'hB;
+	a = 4'hF; // -1
+	b = 4'h0; // 0
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // B is greater
+
+	enable = 1'b1;
+	command = 4'hB;
+	a = 4'h0; // 0
+	b = 4'hF; // -1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1); // A is greater
+
+	enable = 1'b1;
+	command = 4'hB;
+	a = 4'h5; // 5
+	b = 4'h2; // 2
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1); // A is greater
+
+	enable = 1'b1;
+	command = 4'hB;
+	a = 4'hA; // -6
+	b = 4'hF; // -1
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // B is greater
+
+	$display("Shifter Test");
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h0; // 0
+	b = 4'h3; // Left Shift 1 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h1); // 1
+
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h1; // 1
+	b = 4'h3; // Left Shift 1 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h3); // 3
+
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h0; // 0
+	b = 4'h1; // Left Shift 0 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0
+
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h1; // 1
+	b = 4'h1; // Left Shift 0 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h2); // 2
+
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h0; // 0
+	b = 4'h2; // Right Shift 1 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h8); // 8
+
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h9; // 9
+	b = 4'h2; // Right Shift 1 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'hC); // 12
+
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h0; // 0
+	b = 4'h0; // Right shift 0 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h0); // 0
+
+	enable = 1'b1;
+	command = 4'hC;
+	a = 4'h9; // 9
+	b = 4'h0; // Right Shift 0 ->
+	#1
+	`ASSERT(overflow, 1'b0);
+	`ASSERT(result, 4'h4); // 4
+
+
+
 	#1 $finish;
 end
 
